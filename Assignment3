@@ -1,0 +1,5 @@
+Q1) Does ANSI recognize the data type DATE?
+Answer -> Date complies with the ANSI SQL standard definition for the Gregorian calendar.
+
+Q2)Which subdivision of SQL is used to insert values in tables?
+Answer -> "DML" Subdivision of SQL is used to insert values in the tables.
