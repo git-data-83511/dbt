@@ -1,0 +1,24 @@
+Q1) Write a query that produces all pairs of salespeople who are living in the same city. Exclude combinations of salespeople with themselves as well as duplicate rows with the order reversed.
+Answer ->
+
+kd4_suraj_83511>select DISTINCT a.Snum as SNum1,a.Sname as SName1,b.Snum as Snum2,b.Sname as SName2,a.City as City from SALESPEOPLE a, SALESPEOPLE b where a.City=b.City and a.Sname<b.Sname;
++-------+--------+-------+--------+--------+
+| SNum1 | SName1 | Snum2 | SName2 | City   |
++-------+--------+-------+--------+--------+
+|  1004 | Motika |  1001 | Peel   | London |
++-------+--------+-------+--------+--------+
+
+Q2) Write a query that produces the names and cities of all customers with the same rating as Hoffman.
+Answer ->
+
+kd4_suraj_83511>select a.Cname,a.City from CUSTOMERS a,CUSTOMERS b where a.Rating = b.Rating and b.Cname = 'Hoffman';
++---------+--------+
+| Cname   | City   |
++---------+--------+
+| Hoffman | London |
+| Clemens | London |
+| Peneira | Rome   |
++---------+--------+
+
+
+

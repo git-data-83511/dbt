@@ -1,0 +1,63 @@
+Q1) Assume each salesperson has a 12% commission. Write a query on the orders table that will produce the order number, the salesperson number, and the amount of the salesperson's commission for that order.
+Answer ->
+
+kd4_suraj_83511>select Onum,Snum,Amt*0.12"Salespeople Comm" from ORDERS order by 1;
++------+------+------------------+
+| Onum | Snum | Salespeople Comm |
++------+------+------------------+
+| 3001 | 1007 |             2.24 |
+| 3002 | 1004 |           228.01 |
+| 3003 | 1001 |            92.06 |
+| 3005 | 1002 |           619.25 |
+| 3006 | 1007 |           131.78 |
+| 3007 | 1002 |             9.09 |
+| 3008 | 1001 |           566.76 |
+| 3009 | 1003 |           205.59 |
+| 3010 | 1002 |           157.19 |
+| 3011 | 1001 |          1187.03 |
++------+------+------------------+
+
+Q2)Write a query on the Customers table that will find the highest rating in each city. Put the output in this form:
+
+Answer ->
+
+kd4_suraj_83511>select concat ('For the City ', Upper(City),', The Highest Rating is : ',max(Rating)) as Rating_by_City from CUSTOMERS group by City ;
++----------------------------------------------------+
+| Rating_by_City                                     |
++----------------------------------------------------+
+| For the City LONDON, The Highest Rating is : 100   |
+| For the City ROME, The Highest Rating is : 200     |
+| For the City SAN JOSE, The Highest Rating is : 300 |
+| For the City BERLIN, The Highest Rating is : 300   |
++----------------------------------------------------+
+
+Q3) Write a query that lists customers in descending order of rating. Output the rating field first, followed by the customer's name and number.
+Answer ->
+
+kd4_suraj_83511>select Rating,Cname,Cnum from CUSTOMERS order by Rating Desc;
++--------+----------+------+
+| Rating | Cname    | Cnum |
++--------+----------+------+
+|    300 | Grass    | 2004 |
+|    300 | Cisneros | 2008 |
+|    200 | Giovanni | 2002 |
+|    200 | Liu      | 2003 |
+|    100 | Hoffman  | 2001 |
+|    100 | Clemens  | 2006 |
+|    100 | Peneira  | 2007 |
++--------+----------+------+
+
+Q4) Write a query that totals the orders for each day and places the results in descending order.
+Answer ->
+
+kd4_suraj_83511>select Odate,count(Snum)"Orders" from ORDERS group by Odate order by count(Snum) desc;
++------------+--------+
+| Odate      | Orders |
++------------+--------+
+| 1990-10-03 |      5 |
+| 1990-10-04 |      2 |
+| 1990-10-06 |      2 |
+| 1990-10-05 |      1 |
++------------+--------+
+
+

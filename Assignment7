@@ -1,0 +1,76 @@
+Q1) Write a query that counts all orders for October 3.
+Answer ->
+
+kd4_suraj_83511>select count(*) from ORDERS where Odate='1990-10-03';
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+
+Q2) Write a query that counts the number of different non-NULL city values in the Customers table.
+Answer ->
+
+kd4_suraj_83511>select count(city) from CUSTOMERS where city is not null;
++-------------+
+| count(city) |
++-------------+
+|           7 |
++-------------+
+
+Q3) Write a query that selects each customer's" smallest order.
+Answer -> 
+
+kd4_suraj_83511>select Cnum, min(Amt) from ORDERS group by Cnum order by 1;
++------+----------+
+| Cnum | min(Amt) |
++------+----------+
+| 2001 |   767.19 |
+| 2002 |  1713.23 |
+| 2003 |  5160.45 |
+| 2004 |    75.75 |
+| 2006 |  4723.00 |
+| 2007 |  1900.10 |
+| 2008 |    18.69 |
++------+----------+
+
+Q4) Write a query that selects the first customer, in alphabetical order, whose name begins with G.
+Answe ->
+
+kd4_suraj_83511>select min(Cname) from CUSTOMERS where Cname like 'G%';
++------------+
+| min(Cname) |
++------------+
+| Giovanni   |
++------------+
+
+Q5) Write a query that selects the highest rating in each city.
+Answer ->
+
+kd4_suraj_83511>select City,max(Rating) from CUSTOMERS group by City;
++----------+-------------+
+| City     | max(Rating) |
++----------+-------------+
+| London   |         100 |
+| Rome     |         200 |
+| San Jose |         300 |
+| Berlin   |         300 |
++----------+-------------+
+
+Q6) Write a query that counts the number of salespeople registering orders for each day. (Ifa salesperson has more than one order on a givenday, he or she should be counted only once.).
+Answe ->
+
+kd4_suraj_83511>select Snum,count(DISTINCT Odate) from ORDERS group by Snum order by 1;
++------+-----------------------+
+| Snum | count(DISTINCT Odate) |
++------+-----------------------+
+| 1001 |                     3 |
+| 1002 |                     3 |
+| 1003 |                     1 |
+| 1004 |                     1 |
+| 1007 |                     1 |
++------+-----------------------+
+
+
+
+
