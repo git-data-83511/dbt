@@ -1,0 +1,57 @@
+Q1) Write a query that selects all customers whose ratings are equal to or greater than ANY of Serres'.
+Answer ->
+
+kd4_suraj_83511>select* from CUSTOMERS where Rating>= ANY(select Rating from CUSTOMERS where Snum = (Select Snum from SALESPEOPLE where Sname = 'Serres'));
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+
+Q2) Write a query using ANY or ALL that will find all salespeople who have no customers located in their city.
+Answer ->
+
+kd4_suraj_83511>select * from SALESPEOPLE where (Snum,City) <>ALL(select Snum,City from CUSTOMERS) order by Snum;
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1003 | Axelrod | New York  | 0.10 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
++------+---------+-----------+------+
+
+Q3)Write a query that selects all orders for amounts greater than any for the customers in London.
+Answer ->
+
+kd4_suraj_83511>select * from ORDERS where Amt>Any (select Amt from ORDERS where Cnum in(select Cnum from CUSTOMERS where City='London'));
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+
+Q4) Write the above query using MIN or MAX.
+Answer ->
+
+kd4_suraj_83511>select * from ORDERS where Amt>(select min(Amt) from ORDERS where Cnum in(select Cnum from CUSTOMERS where City='London'));
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+
